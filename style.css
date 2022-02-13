@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: all .2s ease-in;
+    font-family: "Montserrat", sans-serif;
+}
+  
+  body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.219), rgba(0, 0, 0, 0.219)), url(./elijah-pilchard-zVTfA55Ldv8-unsplash.jpg);
+  background-size: cover;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+ .container {
+   width: 30%;
+   padding: 2rem 1rem;
+ } 
+
+ .card{
+   background-color: white;
+   border-radius: .3rem;
+ }
+
+ .card div {
+   padding: .8rem;
+ }
+
+ .card-header{
+   display: flex;
+ }
+
+ .card-header input,
+ .card-header button{
+    width: 100%;
+    border: 1px solid #718604;
+    border-radius: .3rem 0 0 .3rem;
+    padding: .5rem;
+    outline-color: #718604;
+ }
+
+ .card p{
+  border-radius: .3rem;
+}
+
+ .card-header button {
+   width: 25%;
+   border-radius: 0 .3rem .3rem 0;
+   background-color: #718604;
+   border: 1px solid #718604;
+   color: white;
+ }
+
+ .card-body ul {
+   list-style: none;
+   border-bottom: 1px solid #93b10160;
+ }
+
+ .card-body ul li{
+   border: 1px solid #93b10160;
+   border-radius: .3rem;
+   border-bottom: none;
+   padding: .5rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ .card-body ul li span i:last-child {
+   color: crimson;
+   margin-left: .3rem;
+   cursor: pointer;
+ }
+
+ .card-body ul li span i:nth-child(1) {
+   color: #718604;
+   cursor: pointer;
+ }
