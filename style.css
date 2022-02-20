@@ -57,12 +57,12 @@
    color: white;
  }
 
- .card-body ul {
+ ul {
    list-style: none;
    border-bottom: 1px solid #93b10160;
  }
 
- .card-body ul li{
+ li{
    border: 1px solid #93b10160;
    border-radius: .3rem;
    border-bottom: none;
@@ -72,13 +72,13 @@
    align-items: center;
  }
 
- .card-body ul li span i:last-child {
+ span i:last-child {
    color: crimson;
    margin-left: .3rem;
    cursor: pointer;
  }
 
- .card-body ul li span i:nth-child(1) {
+ span i:nth-child(1) {
    color: #718604;
    cursor: pointer;
  }

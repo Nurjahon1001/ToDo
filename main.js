@@ -19,13 +19,13 @@ const form = document.querySelector(".form"),
     input2 = document.querySelector(".input2"),
     input3 = document.querySelector(".input3"),
     todos_ul = document.querySelector(".stCard"),
-    ndCard = document.getElementById("ndCard"),
-    rdCard = document.getElementById("rdCard");
+    ndCard = document.querySelector(".ndCard"),
+    rdCard = document.querySelector(".rdCard");
 
 const WriteTodos = () => {
     todos_ul.innerHTML = "";
     ToDo.map((todo, index) => {
-        todos_ul.innerHTML += `<li class="todo" draggable="true">
+        todos_ul.innerHTML += `<li id="drag1" ondragstart ="drag(event)" draggable="true">
         <span>${index+1}. ${todo.title}</span>
         <span>
             <i onclick="EditToDo(${todo.id})" class="bi bi-pencil-square"></i>
@@ -37,7 +37,7 @@ const WriteTodos = () => {
 const WriteTodos2 = () => {
     ndCard.innerHTML = "";
     ndCardList.map((todo2, index2) => {
-        ndCard.innerHTML += `<li class="todo" draggable="true">
+        ndCard.innerHTML += `<li id="drag1" ondragstart ="drag(event)" draggable="true">
         <span>${index2+1}. ${todo2.title}</span>
         <span>
             <i onclick="EditToDo2(${todo2.id})" class="bi bi-pencil-square"></i>
@@ -49,7 +49,7 @@ const WriteTodos2 = () => {
 const WriteTodos3 = () => {
     rdCard.innerHTML = "";
     rdCardList.map((todo3, index3) => {
-        rdCard.innerHTML += `<li class="todo" draggable="true">
+        rdCard.innerHTML += `<li id="drag1" ondragstart ="drag(event)" draggable="true">
         <span>${index3+1}. ${todo3.title}</span>
         <span>
             <i onclick="EditToDo3(${todo3.id})" class="bi bi-pencil-square"></i>
@@ -154,14 +154,18 @@ const DeleteToDo3 = (id) => {
 }
 
 const EditToDo = (id) => {
+    const input = document.createElement('input');
+    input.type = 'text'
     isEdit = true;
     whichEl = id;
     ToDo.map(todo => {
         if (todo.id === id) {
-            input.value = todo.title;
+            input.textContent = todo.title;
         }
     })
-    input.nextElementSibling.innerHTML = '<i class="bi bi-pencil-square"></i> Edit'
+    
+      
+    // input.nextElementSibling.appendChild ('<i class="bi bi-pencil-square"></i> Edit')
 }
 
 const EditToDo2 = (id) => {
@@ -186,59 +190,19 @@ const EditToDo3 = (id) => {
     input3.nextElementSibling.innerHTML = '<i class="bi bi-pencil-square"></i> Edit'
 }
 
-// drag and drop
-const todos = document.querySelectorAll(".todo");
-const all_status = document.querySelectorAll(".status");
-let draggableTodo = null;
-
-todos.forEach((todo) => {
-    todo.addEventListener("dragstart", dragStart);
-    todo.addEventListener("dragend", dragEnd);
-  });
-  
-  function dragStart() {
-    draggableTodo = this;
-    setTimeout(() => {
-      this.style.display = "none";
-    }, 0);
-    console.log("dragStart");
+function allowDrop(ev) {
+    ev.preventDefault();
   }
   
-  function dragEnd() {
-    draggableTodo = null;
-    setTimeout(() => {
-      this.style.display = "block";
-    }, 0);
-    console.log("dragEnd");
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
   }
   
-  all_status.forEach((status) => {
-    status.addEventListener("dragover", dragOver);
-    status.addEventListener("dragenter", dragEnter);
-    status.addEventListener("dragleave", dragLeave);
-    status.addEventListener("drop", dragDrop);
-  });
-  
-  function dragOver(e) {
-    e.preventDefault();
-    //   console.log("dragOver");
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
   }
-  
-  function dragEnter() {
-    this.style.border = "1px dashed #ccc";
-    console.log("dragEnter");
-  }
-  
-  function dragLeave() {
-    this.style.border = "none";
-    console.log("dragLeave");
-  }
-  
-  function dragDrop() { 
-    this.style.border = "none";
-    this.appendChild(draggableTodo);
-    console.log("dropped");
-  }
-console.log(localStorage)
+ 
 
 window.onload = () => WriteTodos(), WriteTodos2(), WriteTodos3() 
